@@ -19,3 +19,6 @@ div {
     border: 1px solid black;
     box-shadow: 5px 10px;
 }
+
+h6{
+    text-align: right;
