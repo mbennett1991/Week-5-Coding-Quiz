@@ -12,26 +12,24 @@ var quizQuestions = [
   {
     question: "What is JavaScript and what does it do?",
     choices: ["A Programming Language", "Change and Update both HTML and CSS", "Calculates, Manipulates and Validates data", "All of the above"],
-    correctAnswer: "3"
+    correctAnswer: "All of the above"
   },
   {
     question: "What is Bootstrap?",
     choices: ["A design program language", "A part of a shoe", "A popular CSS framework", "A phone app"],
-    correctAnswer: "2"
+    correctAnswer: "A popular CSS framework"
   },
   {
     question: "What is the data-type for the following '1'?",
     choices: ["Array", "Boolean", "Integer", "String"],
-    correctAnswer: "3"
+    correctAnswer: "String"
   }
 ];
-
 
 var startBox = document.getElementById("startScreen")
 var startBtn = document.getElementById("startBtn");
 var quizBox = document.getElementById("quizBox");
 var timer = document.querySelector(".timeLeft");
-var resultsPage = document.getElementById("resultsPage");
 
 var quiz;
 var timer;
@@ -50,15 +48,10 @@ function startQuiz() {
   displayQuestions();
   console.log("quiz start triggered")
 };
-//nextset in functionality for startquiz is to start the timer
-//you would display the timer on the page
 //timer is going to check every second if its time to end the quiz
 //***timer functionality can be considered at the end */
 
-//final step is to call another function which starts displaying questions
-
 function displayQuestions() {
-  //Getting h3 element to display the current question
   var questionArea = document.getElementById("question");
   questionArea.textContent = quizQuestions[currentQuestionIndex].question;
   var choicesArea = document.getElementById("choicesSection");
@@ -66,11 +59,13 @@ function displayQuestions() {
   var choicesArray = quizQuestions[currentQuestionIndex].choices;
 
   for (var i = 0; i < choicesArray.length; i++) {
+    var choiceList = document.createElement("li")
     var choiceButton = document.createElement("button");
     choiceButton.textContent = choicesArray[i];
     choiceButton.setAttribute("value", choicesArray[i])
     choiceButton.onclick = checkAnswer;
-    choicesArea.appendChild(choiceButton)
+    choiceList.appendChild(choiceButton);
+    choicesArea.appendChild(choiceList);
   }
 }
 
@@ -78,7 +73,7 @@ function checkAnswer() {
   console.log(this)
   console.log("check answer triggered", this.value)
   if (this.value === quizQuestions[currentQuestionIndex].correctAnswer) {
-    console.log("correct")
+    console.log("Correct")
   } else {
     console.log("Wrong")
   }
@@ -87,16 +82,16 @@ function checkAnswer() {
   if (currentQuestionIndex === quizQuestions.length) {
     endQuiz();
   } else {
-
     displayQuestions();
   }
 }
 
 function endQuiz() {
-  //display endquiz section
-  //populate with score
-  quizBox.style.display = "none"
-  console.log("The end")
+  var resultPage = document.getElementById("resultsPage")
+  quizBox.style.display = "none";
+  resultPage.style.display = "block";
+
+
 }
 
 startBtn.onclick = startQuiz; 
