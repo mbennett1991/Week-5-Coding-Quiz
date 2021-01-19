@@ -9,36 +9,44 @@
     <link rel="stylesheet" href="style.css">
     <title>Coding Quiz App</title>
 </head>
-
+<!--MAYBE TRY CREATING 3 DIFFERENT PAGES
+    INDEX.HTML
+    QUESTIONS.HTML
+    SCORES.HTML 
+    FOR EACH PAGE ON THE BROWSER
+    AND RUNNING A LOOP FOR THE QUESTIONS ON A QUESTIONS.HTML
+    WITH THE LAST QUESTION TRIGGERING THE FINAL SCORE PAGE
+    AND A RESTART BUTTON FOR THE SCORES PAGE LINKING TO
+    INDEX.HTML-->
 <body>
     <!--Start Box-->
-    <div class="container" class="startBox" id="startScreen">
+    <div class="container" class="startBox" id="startScreen" style="display: block;">
         <!---->
         <div class="flex-column flex-center">
             <h1>Coding Quiz</h1>
             <p>Answer the following questions as quickly as you can to test your knowledge!</p>
             <p>Once start is pressed the timer begins!</p>
             <p>Good Luck!</p>
-            <div class="startBtn"><button type="button" class="btn btn-secondary">Start</button></div>
+            <div class="startBtn"><button id="startBtn" type="button" class="btn btn-secondary">Start</button></div>
         </div>
     </div>
     <!--Quiz Box-->
     <!-- Tried wrapping in div class hide but still didn't work-->
-    <div id="quizBox" class="hide container">
+    <div id="quizBox" class="container" style="display:none">
         <header>
             <div class="timer">
                 <h6 class="timeLeft">Time Left: 15</h6>
             </div>
         </header>
         <section>
-            <div class="questions">
-            </div>
-            <div class="options">
+            <h3 class="questions" id="question">
+            </h3>
+            <div class="options" id="choicesSection">
             </div>
         </section>
     </div>
 <!--Results Page-->
-    <div id="resultsPage" class="hide container">
+    <div id="resultsPage" class="container" style="display:none">
         <header>
                 <h4>High Scores</h4>
                 <input type="text" placeholder="insert user initials">
@@ -47,8 +55,8 @@
         </section>
     </div>
 
-    <script href="script.js"></script>
-    <script href="questions.js"></script>
+    <script src="script.js"></script>
+    <script src="questions.js"></script>
 </body>
 
 </html>

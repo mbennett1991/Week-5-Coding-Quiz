@@ -1,5 +1,34 @@
+var quizQuestions = [
+  {
+    question: "What does HTML stand for?",
+    choices: ["HyperText Markup Link", "HyperText Markup Language", "HyperText Markup Lingo", "HyperText Master Language"],
+    correctAnswer: "HyperText Markup Language"
+  },
+  {
+    question: "What does CSS stand for?",
+    choices: ["Cascading Style Sheet", "Cool Style Sheet", "Cascading Style Syntax", "Class Style Sheet"],
+    correctAnswer: "Cascading Style Sheet"
+  },
+  {
+    question: "What is JavaScript and what does it do?",
+    choices: ["A Programming Language", "Change and Update both HTML and CSS", "Calculates, Manipulates and Validates data", "All of the above"],
+    correctAnswer: "3"
+  },
+  {
+    question: "What is Bootstrap?",
+    choices: ["A design program language", "A part of a shoe", "A popular CSS framework", "A phone app"],
+    correctAnswer: "2"
+  },
+  {
+    question: "What is the data-type for the following '1'?",
+    choices: ["Array", "Boolean", "Integer", "String"],
+    correctAnswer: "3"
+  }
+];
+
+
 var startBox = document.getElementById("startScreen")
-var startBtn = document.querySelector(".startBtn button");
+var startBtn = document.getElementById("startBtn");
 var quizBox = document.getElementById("quizBox");
 var timer = document.querySelector(".timeLeft");
 var resultsPage = document.getElementById("resultsPage");
@@ -10,69 +39,64 @@ var quizStatus;
 var userScore = 0;
 var totalPossibleScore = 100;
 var correctAnswerPoints = 20;
-var userInitials; 
-var currentIndex = 0; 
+var userInitials;
+var currentQuestionIndex = 0;
 
-//startBtn.onClick = ()=> {
-  //  quizBox.classList.add("active");
-//} 
 
-function startQuiz(){
-  startBox.setAttribute("class", "hide");
-  quizBox.removeAttribute("class");
+function startQuiz() {
 
-  //nextset in functionality for startquiz is to start the timer
-  //you would display the timer on the page
-  //timer is going to check every second if its time to end the quiz
-  //***timer functionality can be considered at the end */
+  startBox.style.display = "none";
+  quizBox.style.display = "block";
+  displayQuestions();
+  console.log("quiz start triggered")
+};
+//nextset in functionality for startquiz is to start the timer
+//you would display the timer on the page
+//timer is going to check every second if its time to end the quiz
+//***timer functionality can be considered at the end */
 
 //final step is to call another function which starts displaying questions
+
+function displayQuestions() {
+  //Getting h3 element to display the current question
+  var questionArea = document.getElementById("question");
+  questionArea.textContent = quizQuestions[currentQuestionIndex].question;
+  var choicesArea = document.getElementById("choicesSection");
+  choicesArea.innerHTML = "";
+  var choicesArray = quizQuestions[currentQuestionIndex].choices;
+
+  for (var i = 0; i < choicesArray.length; i++) {
+    var choiceButton = document.createElement("button");
+    choiceButton.textContent = choicesArray[i];
+    choiceButton.setAttribute("value", choicesArray[i])
+    choiceButton.onclick = checkAnswer;
+    choicesArea.appendChild(choiceButton)
+  }
 }
 
-function displayQuestions(){
-  var questionHeader = document.createElement("h3");
-  var choiceA = document.createElement("button");
-  var choiceB = document.createElement("button");
-  var choiceC = document.createElement("button");
-  var choiceD = document.createElement("button"); 
-  //populate the first question into the questions and answers sections
-  
-  questionHeader.setValue = questions
-  choiceA.setValue = choices[0];
-  choiceB.setValue = choices[1];
-  choiceC.setValue = choices[2];
-  choiceD.setValue = choices[3];
+function checkAnswer() {
+  console.log(this)
+  console.log("check answer triggered", this.value)
+  if (this.value === quizQuestions[currentQuestionIndex].correctAnswer) {
+    console.log("correct")
+  } else {
+    console.log("Wrong")
+  }
 
-  //for (var i = 0; i=quizQuestions.length; i++);
-  for (var i = 0; i = choices.length; i++);
-  choiceA.addEventListener("click", quizQuestions++);
-  choiceB.addEventListener("click", quizQuesions++);
-  choiceC.addEventListener("click", quizQuestions++);
-  choiceD.addEventListener("click", quizQuestions++)
+  currentQuestionIndex++;
+  if (currentQuestionIndex === quizQuestions.length) {
+    endQuiz();
+  } else {
 
-  //worth noting that you will need to use a forEach on the choices array in the questions object your are displaying
-  //you will also need to create an onclick on each of these buttons which wll call another function
-
-};
-displayQuestions();
-
-
-function checkAnswer(){
-// check if the answer is correct or not...
-if (choiceA || choiceB || choiceC || choiceD === correctAnswer){
-  userScore ++
-  correctAnswerPoints ++
-}else {
-  return;
-}
-// increment the current index 
-//check if we are out of questions and if so.... call the end of quiz function... if notcall displatQuestions 
-
+    displayQuestions();
+  }
 }
 
-function endQuiz(){
+function endQuiz() {
   //display endquiz section
   //populate with score
+  quizBox.style.display = "none"
+  console.log("The end")
 }
 
 startBtn.onclick = startQuiz; 
