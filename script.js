@@ -73,7 +73,12 @@ function checkAnswer() {
   console.log(this)
   console.log("check answer triggered", this.value)
   if (this.value === quizQuestions[currentQuestionIndex].correctAnswer) {
-    console.log("Correct")
+    // var rightOrWrongP = document.createElement("p");
+    // rightOrWrongP.textContent = "Correct!";
+    // document.appendChild(rightOrWrongP);
+    console.log("Correct!")
+    userScore += 20;
+    console.log(userScore);
   } else {
     console.log("Wrong")
   }
@@ -90,8 +95,9 @@ function endQuiz() {
   var resultPage = document.getElementById("resultsPage")
   quizBox.style.display = "none";
   resultPage.style.display = "block";
-
-
+  var userFinalScore = document.getElementById("userFinalScore");
+  userFinalScore.textContent = "Final Score:" + userScore;
+  document.appendChild(userFinalScore);
 }
 
 startBtn.onclick = startQuiz; 
