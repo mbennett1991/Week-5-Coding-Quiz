@@ -107,7 +107,7 @@ function endQuiz() {
 
   
   function renderLastUser(){
-    var retrieveUser = localStorage.getItem("lsKey", "lsValue");
+    var retrieveUser = window.localStorage.getItem(lsKey, lsValue);
     console.log(retrieveUser);
   if (retrieveUser === null){
     return;
@@ -116,8 +116,11 @@ function endQuiz() {
   }
   }
   
-  saveBtn.addEventListener("click", function() {
+  saveBtn.addEventListener("click", function(event) {
     event.preventDefault();
+
+    //try moving lsKay and lsValue outside of function and
+    //then stringifying
 
     var lsKey = userInput.value;
     var lsValue = userScore;
