@@ -92,12 +92,46 @@ function checkAnswer() {
 }
 
 function endQuiz() {
-  var resultPage = document.getElementById("resultsPage")
+  var resultPage = document.getElementById("resultsPage");
   quizBox.style.display = "none";
   resultPage.style.display = "block";
+  
   var userFinalScore = document.getElementById("userFinalScore");
-  userFinalScore.textContent = "Final Score:" + userScore;
+  userFinalScore.textContent = "Final Score: " + userScore;
   document.appendChild(userFinalScore);
 }
+
+  var userInput = document.getElementById("userInput");
+  var lsOutput = document.getElementById("lsOutput");
+  var saveBtn = document.getElementById("saveBtn");
+
+  
+  function renderLastUser(){
+    var retrieveUser = localStorage.getItem("lsKey", "lsValue");
+    console.log(retrieveUser);
+  if (retrieveUser === null){
+    return;
+  }else {
+    lsOutput.textContent = retrieveUser;
+  }
+  }
+  
+  saveBtn.addEventListener("click", function() {
+    event.preventDefault();
+
+    var lsKey = userInput.value;
+    var lsValue = userScore;
+    console.log(lsKey);
+    console.log(lsValue);
+
+    localStorage.setItem(lsKey, lsValue);
+
+    renderLastUser();
+  });
+
+  //for (var i=0; i < localStorage.length; i++){
+    
+
+
 
 startBtn.onclick = startQuiz; 

@@ -26,7 +26,7 @@
     <div id="quizBox" class="container" style="display:none">
         <header>
             <div class="timer">
-                <h6 class="timeLeft">Time Left: 15</h6>
+                <h6 class="timeLeft">Time Left: 60</h6>
             </div>
         </header>
         <section>
@@ -34,17 +34,21 @@
             </h3>
             <div class="options" id="choicesSection">
             </div>
+            <p id = "questionResponse"></p>
         </section>
     </div>
 <!--Results Page-->
     <div id="resultsPage" class="container" style="display:none">
         <header>
                 <h4>High Scores</h4>
+                <ul>
+                    <li id = "lsOutput"></li>
+                </ul>
                 <br>
                 <p id = "userFinalScore"></p>
                 <br>
-                <input type="text" placeholder="insert user initials">
-                <button class = "btn">Save</button>
+                <input type="text" id="userInput" placeholder="insert user initials">
+                <button class = "btn btn-secondary" id="saveBtn">Save</button>
         </header>
         </section>
     </div>
