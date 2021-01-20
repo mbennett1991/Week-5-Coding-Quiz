@@ -104,7 +104,8 @@ function endQuiz() {
   var userInput = document.getElementById("userInput");
   var lsOutput = document.getElementById("lsOutput");
   var saveBtn = document.getElementById("saveBtn");
-
+  var lsKey = userInput.value;
+  var lsValue = userScore;
   
   function renderLastUser(){
     var retrieveUser = window.localStorage.getItem(lsKey, lsValue);
@@ -122,8 +123,6 @@ function endQuiz() {
     //try moving lsKay and lsValue outside of function and
     //then stringifying
 
-    var lsKey = userInput.value;
-    var lsValue = userScore;
     console.log(lsKey);
     console.log(lsValue);
 
