@@ -62,6 +62,7 @@ function setTimer(){
 
     if (secondsLeft === 0 || currentQuestionIndex === quizQuestions.length){
     clearInterval(countDown);
+    setTimeout(endQuiz, 500)
     } 
   }, 1000);
 }
