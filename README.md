@@ -40,8 +40,9 @@ Below is a link to my gitHub pages to see more of my work!
 ---
 <a name = "Credits"></a>  
 ### Credits
-@ChiggyO
-
+@ChiggyO<br>
+My tutor: Colum Lynagh<br>
+askBCS
 
 ---
 <a name = "Badges"></a>
