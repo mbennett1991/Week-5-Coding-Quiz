@@ -114,21 +114,21 @@ function endQuiz() {
 }
 
   var userInput = document.getElementById("userInput");
-  var lsOutput = document.getElementById("lsOutput");
   var saveBtn = document.getElementById("saveBtn");
   
   function renderLastUser(){
     
-    
+  var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  var highScoresOutput = document.getElementById("highScoresOutput");
+  var scoreList = document.createElement("li");
 
-  //   var retrieveUser = localStorage.getItem(JSON.parse(lsKey), lsValue);
-  //   console.log(retrieveUser);
-  // if (retrieveUser === null){
-  //   return;
-  // }else {
-  //   lsOutput.textContent = retrieveUser;
-  // }
-  }
+  for (var i = 0; i < highScores.length; i++){
+  scoreList.textContent = highScores[i].name + "  " + highScores[i].score;
+  highScoresOutput.appendChild.scoreList;
+};
+  console.log(scoreList);
+  console.log(highScoresOutput);
+  };
   
   var maxHighScore = 5;
 
@@ -142,27 +142,15 @@ function endQuiz() {
 
     var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
     
-
     highScores.push(score);
-    console.log(highScores);
-
+  
     highScores.sort((a,b) => b.score - a.score)
     highScores.splice(5);
 
     localStorage.setItem("highScores", JSON.stringify(highScores));
 
-    // lsKey = userInput.value;
-    // lsValue = userScore;
-    // console.log(lsKey);
-    // console.log(lsValue);
-
-    // localStorage.setItem(lsKey, lsValue);
-
+    renderLastUser();
   });
-
-  //for (var i=0; i < localStorage.length; i++){
-    
-
 
 
 startBtn.onclick = startQuiz; 
