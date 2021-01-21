@@ -25,30 +25,23 @@ var quizQuestions = [
     correctAnswer: "String"
   }
 ];
-
 var startBox = document.getElementById("startScreen")
 var startBtn = document.getElementById("startBtn");
 var quizBox = document.getElementById("quizBox");
-
-
 var secondsLeft = (quizQuestions.length * 12 + 1);
-var quizStatus;
 var userScore = 0;
-var totalPossibleScore = 100;
-
 var userInitials;
 var currentQuestionIndex = 0;
-
+var userInput = document.getElementById("userInput");
+var saveBtn = document.getElementById("saveBtn");
+var maxHighScore = 5;
 
 function startQuiz() {
-
   startBox.style.display = "none";
   quizBox.style.display = "block";
   displayQuestions();
   setTimer();
   console.log("quiz start triggered")
-
-
 };
 
 function setTimer() {
@@ -112,9 +105,6 @@ function endQuiz() {
   document.appendChild(userFinalScore);
 }
 
-var userInput = document.getElementById("userInput");
-var saveBtn = document.getElementById("saveBtn");
-
 function renderLastUser() {
   var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
   var highScoresOutput = document.getElementById("highScoresOutput");
@@ -128,8 +118,6 @@ function renderLastUser() {
   console.log(highScoresOutput);
 };
 
-var maxHighScore = 5;
-
 saveBtn.addEventListener("click", function (event) {
   event.preventDefault();
 
@@ -139,7 +127,6 @@ saveBtn.addEventListener("click", function (event) {
   };
 
   var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-
   highScores.push(score);
 
   highScores.sort((a, b) => b.score - a.score);
@@ -149,6 +136,5 @@ saveBtn.addEventListener("click", function (event) {
 
   renderLastUser();
 });
-
 
 startBtn.onclick = startQuiz; 
