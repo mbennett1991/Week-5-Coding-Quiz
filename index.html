@@ -17,6 +17,7 @@
             <h1>Coding Quiz</h1>
             <p>Answer the following questions as quickly as you can to test your knowledge!</p>
             <p>Once start is pressed the timer begins!</p>
+            <p>But watch out! If you get a question wrong, you loose time to complete the quiz!</p>
             <p>Good Luck!</p>
             <div class="startBtn"><button id="startBtn" type="button" class="btn btn-secondary">Start</button></div>
         </div>
@@ -26,7 +27,7 @@
     <div id="quizBox" class="container" style="display:none">
         <header>
             <div class="timer">
-                <h6 class="timeLeft">Time Left: 60</h6>
+                <h6 id="timeLeft"></h6>
             </div>
         </header>
         <section>

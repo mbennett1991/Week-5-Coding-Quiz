@@ -29,14 +29,13 @@ var quizQuestions = [
 var startBox = document.getElementById("startScreen")
 var startBtn = document.getElementById("startBtn");
 var quizBox = document.getElementById("quizBox");
-var timer = document.querySelector(".timeLeft");
 
-var quiz;
-var timer;
+
+var secondsLeft = (quizQuestions.length * 12 + 1);
 var quizStatus;
 var userScore = 0;
 var totalPossibleScore = 100;
-var correctAnswerPoints = 20;
+
 var userInitials;
 var currentQuestionIndex = 0;
 
@@ -46,10 +45,26 @@ function startQuiz() {
   startBox.style.display = "none";
   quizBox.style.display = "block";
   displayQuestions();
+  setTimer();
   console.log("quiz start triggered")
+
+
 };
 //timer is going to check every second if its time to end the quiz
 //***timer functionality can be considered at the end */
+
+function setTimer(){
+  var countDown = setInterval(function(){
+    secondsLeft--;
+    console.log(secondsLeft);
+    var timer = document.getElementById("timeLeft");
+    timer.textContent = "Time: " + secondsLeft;
+
+    if (secondsLeft === 0 || currentQuestionIndex === quizQuestions.length){
+    clearInterval(countDown);
+    } 
+  }, 1000);
+}
 
 function displayQuestions() {
   var questionArea = document.getElementById("question");
@@ -73,16 +88,13 @@ function checkAnswer() {
   console.log(this)
   console.log("check answer triggered", this.value)
   if (this.value === quizQuestions[currentQuestionIndex].correctAnswer) {
-    // var rightOrWrongP = document.createElement("p");
-    // rightOrWrongP.textContent = "Correct!";
-    // document.appendChild(rightOrWrongP);
     console.log("Correct!")
     userScore += 20;
     console.log(userScore);
   } else {
+    secondsLeft = secondsLeft - 5;
     console.log("Wrong")
   }
-
   currentQuestionIndex++;
   if (currentQuestionIndex === quizQuestions.length) {
     endQuiz();
@@ -104,11 +116,11 @@ function endQuiz() {
   var userInput = document.getElementById("userInput");
   var lsOutput = document.getElementById("lsOutput");
   var saveBtn = document.getElementById("saveBtn");
-  var lsKey = userInput.value;
-  var lsValue = userScore;
+
   
   function renderLastUser(){
-    var retrieveUser = window.localStorage.getItem(lsKey, lsValue);
+    
+    var retrieveUser = localStorage.getItem(lsKey, lsValue);
     console.log(retrieveUser);
   if (retrieveUser === null){
     return;
@@ -120,9 +132,8 @@ function endQuiz() {
   saveBtn.addEventListener("click", function(event) {
     event.preventDefault();
 
-    //try moving lsKay and lsValue outside of function and
-    //then stringifying
-
+    lsKey = userInput.value;
+    lsValue = userScore;
     console.log(lsKey);
     console.log(lsValue);
 
