@@ -53,5 +53,6 @@ askBCS
 
 ---
 <a name = "License"></a>
-### License 
-© 2020 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+### License
+© 2021 Michelle Bennett
+© 2021 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
